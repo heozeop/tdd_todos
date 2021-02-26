@@ -1,0 +1,7 @@
+# result of config 
+node_modules
+.vscode
+*.lock
+
+# output file
+dist
