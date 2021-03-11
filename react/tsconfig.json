@@ -60,7 +60,7 @@
     "skipLibCheck": true,                       // .d.ts파일에 대한 타입체크 스킵
     "forceConsistentCasingInFileNames": true,   // 파일 참조시 대소문자 구분 철저히 함.
     "resolveJsonModule": true,                  // .json 파일도 import 가능
-    "isolatedModules": true                     // transpileModule, @babel/plugin-transform-typescript의 컴파일 결과가 안전한지 추가 확인
+    "isolatedModules": true                     // import, export 존재 유무 확인 
   },
   "include": [
     "src/**/*"
