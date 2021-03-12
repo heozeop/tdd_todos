@@ -1,9 +1,10 @@
 import React from 'react';
+import useTodos from '../hooks/useTodo';
 import { Todo } from '../modules/todo';
 import TodoItem from './TodoItem';
 
 function TodoList() {
-  const todos: Todo[] = []; // TODO: 커스텀 Hook 사용하여 조회
+  const todos: Todo[] = useTodos();
 
   if (todos.length === 0) return <p>등록된 항목이 없습니다.</p>;
   
