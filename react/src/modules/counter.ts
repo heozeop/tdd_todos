@@ -36,10 +36,17 @@ const initialState: CounterState = {
 //   }
 // }
 
-const counter = createReducer<CounterState, CounterAction>(initialState, {
-  [INCREASE]: (state) => ({count: state.count + 1}),
-  [DECREASE]: (state) => ({count: state.count - 1}),
-  [INCREASE_BY]: (state, action) => ({count: state.count + action.payload }),
-})
+/* object map 방식 */
+// const counter = createReducer<CounterState, CounterAction>(initialState, {
+//   [INCREASE]: (state) => ({count: state.count + 1}),
+//   [DECREASE]: (state) => ({count: state.count - 1}),
+//   [INCREASE_BY]: (state, action) => ({count: state.count + action.payload }),
+// })
+
+/* method chaining 방식 */
+const counter = createReducer<CounterState, CounterAction>(initialState)
+  .handleAction(increase, state => ({count: state.count + 1}))
+  .handleAction(decrease, state => ({count: state.count - 1}))
+  .handleAction(increaseBy, (state, action) => ({count: state.count + action.payload}));
 
 export default counter;
