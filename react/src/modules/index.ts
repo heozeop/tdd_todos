@@ -1,7 +1,9 @@
 import { combineReducers } from 'redux';
-import counter from './counter';
+import {all} from 'redux-saga/effects';
+import counter, {counterSaga} from './counter';
 import todos from './todo';
 
+/* reducer */
 const rootReducer = combineReducers({
   counter,
   todos,
@@ -10,3 +12,8 @@ const rootReducer = combineReducers({
 export default rootReducer;
 
 export type RootState = ReturnType<typeof rootReducer>;
+
+/* saga */
+export function* rootSaga() {
+  yield all([counterSaga()]);
+}
