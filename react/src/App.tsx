@@ -1,6 +1,7 @@
 import React from 'react';
 import {BrowserRouter as Router, Link, Route, Switch} from 'react-router-dom';
 import Redux from './redux';
+import Recoil from './recoil';
 
 function App() {
   return (
@@ -15,7 +16,7 @@ function App() {
       </ul>
       <Switch>
         <Route path="/redux" component={Redux} />
-        {/* <Route path="/recoil" component={} /> */}
+        <Route path="/recoil" component={Recoil} />
         <Route
           render={({ location }) => (
             <div>
