@@ -1,21 +1,23 @@
+
 import React from 'react';
 import {BrowserRouter as Router, Link, Route, Switch} from 'react-router-dom';
-import Redux from './redux';
+import Counter from './components/Counter';
+import Todo from './components/Todo';
 
-function App() {
+function RoutingList() {
   return (
     <Router>
       <ul>
         <li>
-          <Link to="/redux">redux</Link>
+          <Link to="/todo">투두</Link>
         </li>
         <li>
-          <Link to="/recoil">recoil</Link>
+          <Link to="/counter">카운터</Link>
         </li>
       </ul>
       <Switch>
-        <Route path="/redux" component={Redux} />
-        {/* <Route path="/recoil" component={} /> */}
+        <Route path="/todo" component={Todo} />
+        <Route path="/counter" component={Counter} />
         <Route
           render={({ location }) => (
             <div>
@@ -28,4 +30,4 @@ function App() {
     </Router>
   )
 }
-export default App;
+export default RoutingList;
