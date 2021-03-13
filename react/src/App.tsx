@@ -1,22 +1,32 @@
 import React from 'react';
-import TodoInsert from './components/TodoInsert';
-import TodoList from './components/TodoList';
+import {BrowserRouter as Router, Link, Route, Switch} from 'react-router-dom';
+import Counter from './components/Counter';
+import Todo from './components/Todo';
 
 function App() {
   return (
-    <>
-      <TodoInsert />
-      <TodoList />
-    </>
-  );
+    <Router>
+      <ul>
+        <li>
+          <Link to="/todo">투두</Link>
+        </li>
+        <li>
+          <Link to="/counter">카운터</Link>
+        </li>
+      </ul>
+      <Switch>
+        <Route path="/todo" component={Todo} />
+        <Route path="/counter" component={Counter} />
+        <Route
+          render={({ location }) => (
+            <div>
+              <h2>Not Found 404</h2>
+              <p>{location.pathname}</p>
+            </div>
+          )}
+        />
+      </Switch>
+    </Router>
+  )
 }
-
-// import Counter from './components/Counter';
-
-// function App() {
-//   return (
-//     <Counter />
-//   )
-// }
-
 export default App;
