@@ -1,7 +1,22 @@
 import React from 'react';
+import TodoInsert from './components/TodoInsert';
+import TodoList from './components/TodoList';
 
-export default function App() {
+function App() {
   return (
-    <div>hello bro!</div>
-  )
+    <>
+      <TodoInsert />
+      <TodoList />
+    </>
+  );
 }
+
+// import Counter from './components/Counter';
+
+// function App() {
+//   return (
+//     <Counter />
+//   )
+// }
+
+export default App;
