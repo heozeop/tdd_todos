@@ -1,7 +1,15 @@
 import React from 'react';
+import { useRecoilState } from 'recoil';
+import {counterState} from '../modules/counter';
 
 function Counter() {
-  const [count, {increase, decrease}] = [0, ({increase: ()=>{}, decrease: () => {}})]; // TODO: useRecoilState 사용
+  const [count, setCount] = useRecoilState(counterState);
+  function increase() {
+    setCount(count + 1);
+  }
+  function decrease() {
+    setCount(count - 1);
+  }
 
   return (
     <>
