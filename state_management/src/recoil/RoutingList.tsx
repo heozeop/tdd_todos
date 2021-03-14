@@ -1,5 +1,6 @@
 import React from 'react';
 import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
+import TodoList from './components/TodoList';
 import Counter from './components/Counter';
 
 // import Todo from './components/Todo';
@@ -16,9 +17,8 @@ function RoutingList() {
         </li>
       </ul>
       <Switch>
+        <Route path="/todo" component={TodoList} />
         <Route path="/counter" component={Counter} />
-        {/* <Route path="/todo" component={Todo} />
-        <Route path="/counter" component={Counter} /> */}
         <Route
           render={({ location }) => (
             <div>
