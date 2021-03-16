@@ -1,11 +1,16 @@
 import React from 'react';
-import {Todos, Todo} from '../modules/Todo';
+import {useRecoilValue} from 'recoil';
+import TodoInsert from './TodoInsert';
+import {listState, Todo} from '../modules/Todo';
 import TodoItem from './TodoItem';
 
 
+
 function TodoList() {
-  const list: Todos = [{id: 1, title: 'hehe', done: false}];
+  const list = useRecoilValue(listState) ;
   return (
+    <>
+    <TodoInsert />
     <ul>
       {list.map((item: Todo) => (
         <li key={item.id}>
@@ -13,6 +18,7 @@ function TodoList() {
         </li>
       ))}
     </ul>
+    </>
   );
 }
 

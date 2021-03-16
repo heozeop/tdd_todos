@@ -1,14 +1,18 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react';
+import { useSetRecoilState } from 'recoil';
+import {listState} from '../modules/Todo';
 
 function TodoInsert() {
   const [value, setValue] = useState('');
+  const addTodo = useSetRecoilState(listState);
+
   function onChange(e: ChangeEvent<HTMLInputElement>) {
     setValue(e.target.value);
   }
 
   function onSubmit (e: FormEvent) {
     e.preventDefault();
-    // TODO: insert string to list
+    addTodo((old) => [...old, {id: old.length + 1, done: false, title: value}]);
     setValue('');
   }
   return (
