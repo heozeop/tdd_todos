@@ -1,11 +1,11 @@
 import React from 'react';
-import ReactDom from 'react-dom';
-import {Provider} from 'react-redux';
-import {applyMiddleware, createStore} from 'redux';
-import {composeWithDevTools} from 'redux-devtools-extension';
+import { Provider } from 'react-redux';
+import { applyMiddleware, createStore } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
 import createSagaMiddleware from 'redux-saga';
+
+import RoutingList from './RoutingList';
 import rootReducer, {rootSaga} from './modules';
-import App from './App';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -18,11 +18,11 @@ const store = createStore(
 
 sagaMiddleware.run(rootSaga);
 
-ReactDom.render(
-  <React.StrictMode>
+function Redux() {
+  return (
     <Provider store={store}>
-      <App />
+      <RoutingList />
     </Provider>
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+  )
+}
+export default Redux;

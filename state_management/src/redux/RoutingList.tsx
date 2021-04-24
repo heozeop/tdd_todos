@@ -1,9 +1,10 @@
+
 import React from 'react';
 import {BrowserRouter as Router, Link, Route, Switch} from 'react-router-dom';
 import Counter from './components/Counter';
 import Todo from './components/Todo';
 
-function App() {
+function RoutingList() {
   return (
     <Router>
       <ul>
@@ -29,4 +30,4 @@ function App() {
     </Router>
   )
 }
-export default App;
+export default RoutingList;
