@@ -28,8 +28,8 @@
     "noFallthroughCasesInSwitch": true, // switch문제서 fallthrough를 잡아줌
     "noImplicitReturns": true, // 모든 경로의 함수가 리턴하는지 확인
     "noStrictGenericChecks": true, // Generic에 대해 strict하게 체크 안함.
-    "noUnusedLocals": true, // 안쓰는 로컬 변수 체크
-    "noUnusedParameters": true, // 함수 파라미터 중 안쓰는 것 체크
+    "noUnusedLocals": false, // 안쓰는 로컬 변수 체크
+    "noUnusedParameters": false, // 함수 파라미터 중 안쓰는 것 체크
     "strict": true, // 아래 모든 typechecking 요소를 활성화 함.
     /*
     "noImplicitAny": true,                      // any타입이 될거 같으면 error
