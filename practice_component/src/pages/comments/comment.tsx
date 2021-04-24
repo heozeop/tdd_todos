@@ -41,14 +41,16 @@ const SeeMore = styled.span`
 `;
 
 const CommentWrapper = styled.div`
+  padding: 24px;
   min-height: 140px;
   width: 100%;
-  padding: 25px;
 `;
 
 const ProductInfo = styled.div`
   display: flex;
   align-items: center;
+  margin-bottom: 20px;
+  height: 60px;
 `;
 
 const ProductImage = styled.img`
@@ -57,6 +59,9 @@ const ProductImage = styled.img`
 `;
 const ProductTitle = styled.p`
   font-size: 24px;
+  overflow: hidden;
+  height: 100%;
+  text-overflow: ellipsis;
   padding: 0 24px;
   margin: 0;
 `;

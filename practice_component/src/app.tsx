@@ -8,7 +8,7 @@ const App = () => {
       <Router>
         <Link to="/comments">댓글 컴포넌트</Link>
         <Switch>
-          <Route path="/comments" render={Comments} />
+          <Route path="/comments" render={Comments}></Route>
         </Switch>
       </Router>
     </>
