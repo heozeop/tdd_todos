@@ -16,9 +16,9 @@ const CommentTab = (props: {
               id={tabMenu}
               checked={index === scrollIndex}
               value={tabMenu}
-              onChange={(value) => {
+              onChange={() => {
                 setScrollIndex(index);
-                props.onTabMenu(value);
+                props.onTabMenu(tabMenu);
               }}
               name={'tabMenu'}
             />

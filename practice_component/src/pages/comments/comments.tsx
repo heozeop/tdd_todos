@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
-import DummyData from '../../../data';
 import styled from 'styled-components';
 import Comment from './comment';
 import CommentTab from './commentTab';
+import { useComments } from './useComments';
 
 const Comments = (props: any) => {
-  const comments = DummyData.comments;
   const tabMenu = ['QnA', '질문'];
+
   const [currentMenu, setCurrentMenu] = useState(tabMenu[0]);
+  const { comments } = useComments({ commentKey: currentMenu });
 
   return (
     <>
@@ -23,7 +24,11 @@ const Comments = (props: any) => {
         </CommentFixedTopArea>
         <div style={{ height: '110px' }}></div>
         {comments.map((commentData) => (
-          <Comment key={commentData.id} {...commentData} />
+          <Comment
+            key={commentData.id}
+            commentKey={currentMenu}
+            {...commentData}
+          />
         ))}
       </CommentsWrapper>
     </>

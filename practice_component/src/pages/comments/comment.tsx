@@ -2,7 +2,11 @@ import React, { useState } from 'react';
 import { IComment } from './types';
 import styled from 'styled-components';
 
-const Comment = (props: IComment) => {
+interface ICommentProps extends IComment {
+  commentKey: string;
+}
+
+const Comment = (props: ICommentProps) => {
   const { content, likeCount, relatedProduct } = props;
   return (
     <CommentWrapper>
