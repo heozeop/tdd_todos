@@ -49,6 +49,7 @@ const CommentHeader = styled.div`
   align-items: center;
   font-size: 20px;
   background-color: #fff;
+  border-bottom: #ededed 1px solid;
   /* box-shadow: 0px 0px 4px 3px rgba(0, 0, 0, 0.2); */
 `;
 
