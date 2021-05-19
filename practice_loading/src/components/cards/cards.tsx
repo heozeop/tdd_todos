@@ -55,7 +55,7 @@ interface IGridWrapper {
 const GridWrapper = styled.section`
   display: grid;
   grid-template-columns: repeat(
-    ${(props: any) => (props.columns ? props.columns : 4)},
+    ${(props: any) => (props.columns ? props.columns : 1)},
     1fr
   );
   gap: ${(props: any) => (props.gap ? getPixelIfNumber(props.gap) : '2%')};

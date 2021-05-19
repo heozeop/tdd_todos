@@ -1,14 +1,24 @@
-import React from 'react';
-import { GirdCardList } from './components';
+import React, { useState } from 'react';
+import { GirdCardList, IntersectionFectcher } from './components';
 import { useCardRoversCuriocityPhotos } from './data/card';
 
 const App = () => {
+  const [count, setCount] = useState(0);
   const { cardList } = useCardRoversCuriocityPhotos({
     sol: 1,
   });
   return (
     <>
-      <GirdCardList cardList={cardList} />
+      <IntersectionFectcher
+        onIntersectioned={() => {
+          if (count < 10) {
+            console.log(count);
+            setCount(count + 1);
+          }
+        }}
+      >
+        <GirdCardList cardList={cardList} />
+      </IntersectionFectcher>
     </>
   );
 };

@@ -1,21 +1,31 @@
 import React, { ReactNode, ReactNodeArray, useEffect } from 'react';
 import styled from 'styled-components';
-import { EDirections } from 'src/data/direction';
+import { EDirections, isHorizontal } from '../../data/direction';
+import { useIntersectionFetcher } from './useIntersectionFetcher';
+import { getPixelIfNumber } from '../../common';
 
 interface IIntersectionFetcherProps {
-  triggerLocation: EDirections;
-  triggerApartAmount: number | string;
-  onIntersectioned: () => void;
+  triggerLocation?: EDirections;
+  triggerApartAmount?: number | string;
+  onIntersectioned?: () => void;
   children?: ReactNode | ReactNodeArray;
 }
 
 export const IntersectionFectcher = (props: IIntersectionFetcherProps) => {
+  const {
+    onIntersectioned,
+    triggerLocation = EDirections.BOTTOM,
+    triggerApartAmount = '10%',
+  } = props;
+  const triggerPoint = {
+    [`${triggerLocation}`]: getPixelIfNumber(triggerApartAmount),
+    isHorizontal: isHorizontal(triggerLocation),
+  };
+  const { triggerRef } = useIntersectionFetcher(onIntersectioned);
   return (
-    <Wrapper className="intersection-fetcher__wrapper">
-      <Container className="intersection-fetcher__container">
-        {props.children}
-      </Container>
-      <Trigger className="intersection-fetcher__trigger"></Trigger>
+    <Wrapper>
+      <Container>{props.children}</Container>
+      <Trigger ref={triggerRef} {...triggerPoint} />
     </Wrapper>
   );
 };
@@ -36,6 +46,6 @@ const Trigger = styled.div`
   bottom: ${(props: any) => (props.bottom ? props.bottom : 'auto')};
   right: ${(props: any) => (props.right ? props.right : 'auto')};
 
-  width: ${(props: any) => (props.isHorizontal ? '100%' : 0)};
-  height: ${(props: any) => (props.isHorizontal ? 0 : '100%')};
+  height: ${(props: any) => (props.isHorizontal ? '100%' : 0)};
+  width: ${(props: any) => (props.isHorizontal ? 0 : '100%')};
 `;
