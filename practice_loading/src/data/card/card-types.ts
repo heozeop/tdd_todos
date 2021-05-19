@@ -4,3 +4,7 @@ export interface ICard {
   name: string;
   date: string;
 }
+
+export interface ICardHookResponse {
+  cardList: ICard[];
+}

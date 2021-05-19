@@ -1,5 +1,6 @@
-class DummyData {
-  static get getRoversCuriosityPhotos() {
+import { IGetRoversCuriocityResponse } from './rover_curiocity/rover_curiocity-types';
+export class DummyData {
+  static get getRoversCuriosityPhotos(): IGetRoversCuriocityResponse {
     return {
       photos: [
         {
@@ -146,5 +147,3 @@ class DummyData {
     };
   }
 }
-
-export default DummyData;
