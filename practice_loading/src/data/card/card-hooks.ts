@@ -3,7 +3,7 @@ import { ICardHookResponse } from '.';
 import { DummyData } from '../api';
 import { IGetRoversCuriocityParams } from '../api/rover_curiocity/rover_curiocity-types';
 
-export function useRoversCuriocityPhotosData(
+export function useCardRoversCuriocityPhotos(
   params: IGetRoversCuriocityParams
 ): ICardHookResponse {
   // TODO: change to get data from api
@@ -18,6 +18,6 @@ export function useRoversCuriocityPhotosData(
   }, [params, data]);
 
   return {
-    cardList
-  }
+    cardList,
+  };
 }
