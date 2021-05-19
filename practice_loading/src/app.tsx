@@ -12,7 +12,6 @@ const App = () => {
       <IntersectionFectcher
         onIntersectioned={() => {
           if (count < 10) {
-            console.log(count);
             setCount(count + 1);
           }
         }}

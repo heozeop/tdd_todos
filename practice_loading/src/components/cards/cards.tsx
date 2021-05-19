@@ -2,15 +2,19 @@ import React from 'react';
 import { getPixelIfNumber } from '../../common';
 import { ICard } from '../../data/card';
 import styled from 'styled-components';
+import Skeleton from 'react-loading-skeleton';
 
 export const CardItem = (props: ICard) => {
   const { name, image, date } = props;
   return (
     <CardWrapper>
-      <CardImage src={image} />
+      <picture>
+        <CardImage src={image} />
+        <Skeleton width={'100%'} height={'80%'} />
+      </picture>
       <CardInfo>
-        <p>{name}</p>
-        <p>{date}</p>
+        <p>{name || <Skeleton />}</p>
+        <p>{date || <Skeleton count={5} />}</p>
       </CardInfo>
     </CardWrapper>
   );
