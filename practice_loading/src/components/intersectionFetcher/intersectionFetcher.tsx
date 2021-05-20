@@ -31,8 +31,6 @@ export const IntersectionFectcher = (props: IIntersectionFetcherProps) => {
 };
 
 const Wrapper = styled.div`
-  width: fit-content;
-  height: fit-content;
   position: relative;
   z-index: 0;
 `;
