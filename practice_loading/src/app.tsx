@@ -4,9 +4,7 @@ import { useCardRoversCuriocityPhotos } from './data/card';
 
 const App = () => {
   const [count, setCount] = useState(0);
-  const { cardList } = useCardRoversCuriocityPhotos({
-    sol: 1,
-  });
+  const { cardList } = useCardRoversCuriocityPhotos();
   return (
     <>
       <IntersectionFectcher

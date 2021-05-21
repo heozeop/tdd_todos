@@ -1,7 +1,7 @@
 import { IGetRoversCuriocityResponse } from './rover_curiocity/rover_curiocity-types';
 export class DummyData {
   static get getRoversCuriosityPhotos(): IGetRoversCuriocityResponse {
-    return {
+    const roverCuriocityPhotos = {
       photos: [
         {
           id: 32403,
@@ -144,6 +144,8 @@ export class DummyData {
           },
         },
       ],
-    };
+    } as IGetRoversCuriocityResponse;
+
+    return roverCuriocityPhotos;
   }
 }
