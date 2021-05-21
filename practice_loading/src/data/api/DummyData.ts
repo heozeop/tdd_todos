@@ -1,6 +1,6 @@
 import { IGetRoversCuriocityResponse } from './rover_curiocity/rover_curiocity-types';
 export class DummyData {
-  static get getRoversCuriosityPhotos(): IGetRoversCuriocityResponse {
+  static get getRoversCuriosityPhotos(): Promise<IGetRoversCuriocityResponse> {
     const roverCuriocityPhotos = {
       photos: [
         {
@@ -146,6 +146,6 @@ export class DummyData {
       ],
     } as IGetRoversCuriocityResponse;
 
-    return roverCuriocityPhotos;
+    return Promise.resolve(roverCuriocityPhotos);
   }
 }

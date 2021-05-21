@@ -1,6 +1,5 @@
 import { useCallback, useMemo } from 'react';
-import { useQuery } from 'react-query/types/react';
-import { useMutation } from 'react-query/types/react/useMutation';
+import { useMutation, useQuery } from 'react-query';
 import { ICardHookResponse } from '.';
 import { DummyData } from '../api';
 import {
@@ -10,10 +9,15 @@ import {
 
 const ROVER_CURIOCITY_KEY = 'roverCuriocityKey';
 
-export function useCardRoversCuriocityPhotos(): ICardHookResponse {
+export function useCardRoversCuriocityPhotos(
+  params: IGetRoversCuriocityParams
+): ICardHookResponse {
   // TODO: change to get data from api
 
-  const data = DummyData.getRoversCuriosityPhotos;
+  const { data, isSuccess } = useQuery(ROVER_CURIOCITY_KEY, () => {
+    return DummyData.getRoversCuriosityPhotos;
+  });
+
   const cardList = useMemo(() => {
     if (!data) {
       return [];
@@ -29,5 +33,6 @@ export function useCardRoversCuriocityPhotos(): ICardHookResponse {
 
   return {
     cardList,
+    isSuccess,
   };
 }

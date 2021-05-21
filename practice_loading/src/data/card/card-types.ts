@@ -7,4 +7,6 @@ export interface ICard {
 
 export interface ICardHookResponse {
   cardList: ICard[];
+  fetchCardList?: (params: any) => any;
+  isSuccess?: boolean;
 }
