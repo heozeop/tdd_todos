@@ -1,7 +1,8 @@
-export interface IGetImagesNasaCollectionParams {
+import { IPagenatedParam } from '../api-types';
+
+export interface IGetImagesNasaCollectionParams extends IPagenatedParam {
   q?: string;
   media_type?: 'image' | 'audio' | 'video';
-  page?: number;
   title?: string;
 }
 

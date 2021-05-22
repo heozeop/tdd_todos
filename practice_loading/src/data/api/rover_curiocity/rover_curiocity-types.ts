@@ -1,3 +1,5 @@
+import { IPagenatedParam } from '../api-types';
+
 export const API_KEY = 'DEMO_KEY';
 
 export interface IRoversCuriocityPhoto {
@@ -24,8 +26,7 @@ interface IRoversCuriocityRover {
   status: 'active';
 }
 
-export interface IGetRoversCuriocityParams {
-  page?: number;
+export interface IGetRoversCuriocityParams extends IPagenatedParam {
   sol: number;
 }
 
