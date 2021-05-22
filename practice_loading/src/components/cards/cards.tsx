@@ -6,11 +6,20 @@ import Skeleton from 'react-loading-skeleton';
 
 export const CardItem = (props: ICard) => {
   const { name, image, date } = props;
+  const [showSkeleton, setShowSkeleton] = useState(true);
 
   return (
     <CardWrapper>
-      <Skeleton wrapper={SkeletonCard} width={'100%'} height={300} />
-      <CardImage src={image} />
+      <SkeletonCard>
+        {showSkeleton && (
+          <Skeleton wrapper={SkeletonCard} width={'100%'} height={'100vh'} />
+        )}
+        <CardImage
+          onLoad={() => setShowSkeleton(false)}
+          loading={'lazy'}
+          src={image}
+        />
+      </SkeletonCard>
       <CardInfo>
         <p>{name || <Skeleton />}</p>
         <p>{date || <Skeleton />}</p>
@@ -25,13 +34,11 @@ const CardWrapper = styled.div`
   display: grid;
   grid-template-rows: 2;
   isolation: isolate;
-  contain: paint;
 `;
 
 const SkeletonCard = styled.div`
-  width: 100%;
+  width: 300px;
   height: 300px;
-  position: absolute;
   top: 0;
   left: 0;
   z-index: 0;
@@ -74,7 +81,7 @@ const GridWrapper = styled.section`
   display: grid;
   grid-template-columns: repeat(
     ${(props: any) => (props.columns ? props.columns : 1)},
-    1fr
+    minmax(100px, 300px)
   );
   gap: ${(props: any) => (props.gap ? getPixelIfNumber(props.gap) : '2%')};
 `;

@@ -32,10 +32,14 @@ export const IntersectionFectcher = (props: IIntersectionFetcherProps) => {
 
 const Wrapper = styled.div`
   position: relative;
+  width: 100%;
   z-index: 0;
 `;
 
-const Container = styled.section``;
+const Container = styled.section`
+  width: 100%;
+  height: 100%;
+`;
 
 const Trigger = styled.div`
   position: absolute;
