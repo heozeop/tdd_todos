@@ -12,3 +12,5 @@ export interface ICardHookResponse {
   isLoading?: boolean;
   isSuccess?: boolean;
 }
+
+export type CardRefinementResultType = ICard[];

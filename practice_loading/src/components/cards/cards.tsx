@@ -12,7 +12,7 @@ export const CardItem = (props: ICard) => {
     <CardWrapper>
       <SkeletonCard>
         {showSkeleton && (
-          <Skeleton wrapper={SkeletonCard} width={'100%'} height={'100vh'} />
+          <Skeleton wrapper={SkeletonCard} width={'100%'} height={'100%'} />
         )}
         <CardImage
           onLoad={() => setShowSkeleton(false)}
@@ -83,5 +83,5 @@ const GridWrapper = styled.section`
     ${(props: any) => (props.columns ? props.columns : 1)},
     minmax(100px, 300px)
   );
-  gap: ${(props: any) => (props.gap ? getPixelIfNumber(props.gap) : '2%')};
+  gap: ${(props: any) => (props.gap ? getPixelIfNumber(props.gap) : '20px')};
 `;

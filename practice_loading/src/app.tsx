@@ -2,24 +2,26 @@ import React, { useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { getPixelIfNumber } from './common';
 import { GirdCardList, IntersectionFectcher } from './components';
-import { useCardRoversCuriocityPhotos } from './data/card';
+import { useCardRoversCuriocityPhotos, useNasaImagesSearch } from './data/card';
 
 const App = () => {
-  const [fetchState, setFetchState] = useState(false);
-  const { cardList, isLoading, canFetchMore, fetchList } =
-    useCardRoversCuriocityPhotos({ sol: 1 });
+  const { cardList, isLoading, isSuccess, canFetchMore, fetchList } =
+    // useCardRoversCuriocityPhotos({ sol: 1 });
+    useNasaImagesSearch({ q: 'earth', media_type: 'image' });
+  const [fetchableState, setFetchableState] = useState(true);
 
   const triggerFetch = useCallback(() => {
-    if (!fetchState) {
-      setFetchState(true);
+    if (!isLoading && fetchableState) {
+      setFetchableState(false);
+      fetchList();
     }
-  }, [fetchState, setFetchState]);
+  }, [fetchableState, setFetchableState, isLoading]);
 
   useEffect(() => {
-    if (!isLoading && canFetchMore && fetchState) {
-      fetchList().finally(() => setFetchState(false));
+    if (!isLoading && isSuccess && !fetchableState) {
+      setFetchableState(true);
     }
-  }, [isLoading, canFetchMore, fetchState, setFetchState, fetchList]);
+  }, [fetchableState, isLoading, isSuccess]);
 
   return (
     <>
@@ -27,7 +29,7 @@ const App = () => {
         onIntersectioned={() => {
           triggerFetch();
         }}
-        disableTrigger={canFetchMore}
+        disableTrigger={!canFetchMore}
       >
         <Spacing height={1000} />
         <GirdCardList cardList={cardList} />

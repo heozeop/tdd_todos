@@ -3,7 +3,6 @@ import { IPagenatedParam } from '../api-types';
 export interface IGetImagesNasaCollectionParams extends IPagenatedParam {
   q?: string;
   media_type?: 'image' | 'audio' | 'video';
-  title?: string;
 }
 
 export interface IImagesNasaCollection {
@@ -31,19 +30,19 @@ interface IImagesNasaItem {
 
 interface IImagesNasaItemsData {
   keywords?: string[];
-  description?: string;
+  description: string;
   location?: string;
   photographer?: string;
-  title?: string;
-  nasa_id?: string;
+  title: string;
+  nasa_id: string;
   center?: string;
   media_type?: string;
-  date_created?: string;
+  date_created: string;
   album?: string[];
 }
 
 interface IImagesNasaItemsLink {
-  href?: string;
-  rel?: string;
+  href: string;
+  rel: string;
   render?: string;
 }

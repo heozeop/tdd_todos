@@ -3,9 +3,17 @@ import { useInfiniteQuery } from 'react-query';
 import { ICard, ICardHookResponse } from '.';
 import { getRoversCuriosityPhotos, IGetRoversCuriocityParams } from '../api';
 import { IPagenatedParam } from '../api/api-types';
-import { refineRoverCuriocityPhotos } from './card-functions';
+import {
+  getImagesNasaSearch,
+  IGetImagesNasaCollectionParams,
+} from '../api/images_nasa';
+import {
+  refineRoverCuriocityPhotos,
+  refineImagesNasaSearch,
+} from './card-functions';
 
 const ROVER_CURIOCITY_KEY = 'roverCuriocityKey';
+const NASA_IMAGES_KEY = 'nasaImagesKey';
 
 export function useCardRoversCuriocityPhotos(
   params: IGetRoversCuriocityParams
@@ -17,6 +25,15 @@ export function useCardRoversCuriocityPhotos(
       getRoversCuriosityPhotos(params).then((res) =>
         refineRoverCuriocityPhotos(res)
       ),
+  });
+}
+
+export function useNasaImagesSearch(params: IGetImagesNasaCollectionParams) {
+  return useInifiniteCardList({
+    fetchKey: NASA_IMAGES_KEY,
+    fetchParams: params,
+    fetchFunction: (params) =>
+      getImagesNasaSearch(params).then((res) => refineImagesNasaSearch(res)),
   });
 }
 
@@ -34,16 +51,22 @@ export function useInifiniteCardList<T extends IPagenatedParam>(
   const {
     data,
     isLoading,
-    hasNextPage,
+    hasNextPage = false,
     isFetchingNextPage,
     fetchNextPage,
     isSuccess,
   } = useInfiniteQuery<ICard[]>(
     [fetchKey, fetchParams],
     ({ pageParam = fetchParams.page ?? 1 }) => {
+      if (pageParam === null) {
+        return [];
+      }
       return fetchFunction({ ...fetchParams, page: pageParam });
     },
     {
+      // 다음 페이지를 받는 방법이 고정적이다.
+      // 외부에서 주입할 수 있도록 infinite query의 response 타입을
+      // 단순 ICard[]에서 nextPage/prevPage를 가질 수 있는 데이터로 바꿀 필요가 있다.
       getNextPageParam: (lastPage, allPages) => {
         if (lastPage && lastPage.length > 0) {
           return allPages.length + 1;
