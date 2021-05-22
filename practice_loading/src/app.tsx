@@ -5,15 +5,14 @@ import { GirdCardList, IntersectionFectcher } from './components';
 import { useCardRoversCuriocityPhotos } from './data/card';
 
 const App = () => {
-  const [count, setCount] = useState(0);
-  const { cardList } = useCardRoversCuriocityPhotos({ sol: 1 });
+  const { cardList, isLoading, canFetchMore, fetchList } =
+    useCardRoversCuriocityPhotos({ sol: 1 });
   return (
     <>
       <IntersectionFectcher
         onIntersectioned={() => {
-          if (count < 10) {
-            console.log(count);
-            setCount(count + 1);
+          if (!isLoading && canFetchMore) {
+            fetchList();
           }
         }}
       >

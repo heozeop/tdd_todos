@@ -22,6 +22,7 @@ export const IntersectionFectcher = (props: IIntersectionFetcherProps) => {
     isHorizontal: isHorizontal(triggerLocation),
   };
   const { triggerRef } = useIntersectionFetcher(onIntersectioned);
+
   return (
     <Wrapper>
       <Container>{props.children}</Container>
