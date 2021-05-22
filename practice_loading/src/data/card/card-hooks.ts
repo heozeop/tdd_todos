@@ -1,11 +1,11 @@
 import { useMemo } from 'react';
 import { useInfiniteQuery } from 'react-query';
-import { ICardHookResponse } from '.';
+import { ICard, ICardHookResponse } from '.';
 import {
   getRoversCuriosityPhotos,
   IGetRoversCuriocityParams,
-  IGetRoversCuriocityResponse,
 } from '../api';
+import { refineRoverCuriocityPhotos } from './card-functions';
 
 const ROVER_CURIOCITY_KEY = 'roverCuriocityKey';
 
@@ -19,15 +19,16 @@ export function useCardRoversCuriocityPhotos(
     isFetchingNextPage,
     fetchNextPage,
     isSuccess,
-  } = useInfiniteQuery<IGetRoversCuriocityResponse>(
+  } = useInfiniteQuery<ICard[]>(
     [ROVER_CURIOCITY_KEY, params],
     ({ pageParam = params.page ?? 1 }) => {
-      return getRoversCuriosityPhotos({ ...params, page: pageParam });
+      return getRoversCuriosityPhotos({ ...params, page: pageParam }).then(
+        (res) => refineRoverCuriocityPhotos(res)
+      );
     },
     {
       getNextPageParam: (lastPage, allPages) => {
-        console.log(lastPage, allPages);
-        if (lastPage && lastPage.photos.length > 0) {
+        if (lastPage && lastPage.length > 0) {
           return allPages.length + 1;
         }
         return null;
@@ -36,19 +37,11 @@ export function useCardRoversCuriocityPhotos(
   );
 
   const cardList = useMemo(() => {
-    console.log(data);
     if (!data) {
       return [];
     }
 
-    return data.pages.flatMap((page) =>
-      page.photos.map((photo) => ({
-        id: photo.id,
-        image: photo.img_src,
-        name: photo.rover.name,
-        date: photo.earth_date,
-      }))
-    );
+    return data.pages.flat();
   }, [data]);
 
   return {

@@ -13,6 +13,9 @@ export function getQueryParams(x?: { [key: string]: any }) {
 
   return Object.entries(x)
     .map(([key, value]) => {
+      if (value instanceof Array) {
+        return `${key}=${value.join(',')}`;
+      }
       return `${key}=${value}`;
     })
     .join('&');

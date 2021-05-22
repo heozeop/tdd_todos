@@ -7,6 +7,7 @@ import { getPixelIfNumber } from '../../common';
 interface IIntersectionFetcherProps {
   triggerLocation?: EDirections;
   triggerApartAmount?: number | string;
+  disableTrigger?: boolean;
   onIntersectioned?: () => void;
   children?: ReactNode | ReactNodeArray;
 }
@@ -16,7 +17,9 @@ export const IntersectionFectcher = (props: IIntersectionFetcherProps) => {
     onIntersectioned,
     triggerLocation = EDirections.BOTTOM,
     triggerApartAmount = '10%',
+    disableTrigger,
   } = props;
+
   const triggerPoint = {
     [`${triggerLocation}`]: getPixelIfNumber(triggerApartAmount),
     isHorizontal: isHorizontal(triggerLocation),
@@ -26,15 +29,15 @@ export const IntersectionFectcher = (props: IIntersectionFetcherProps) => {
   return (
     <Wrapper>
       <Container>{props.children}</Container>
-      <Trigger ref={triggerRef} {...triggerPoint} />
+      {!disableTrigger && <Trigger ref={triggerRef} {...triggerPoint} />}
     </Wrapper>
   );
 };
 
 const Wrapper = styled.div`
   position: relative;
+  z-index: 1;
   width: 100%;
-  z-index: 0;
 `;
 
 const Container = styled.section`
